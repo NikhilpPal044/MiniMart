@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniMart - My Orders</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>My Orders</h1>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="cart.html">Cart</a>
+            <a href="profile.html">Profile</a>
+        </nav>
+    </header>
+
+    <main>
+        <p id="message" role="status"></p>
+        <div id="ordersList">Loading orders...</div>
+    </main>
+
+    <script src="../js/app.js"></script>
+    <script>
+        const ordersList = document.getElementById("ordersList");
+        const message = document.getElementById("message");
+
+        async function loadOrders() {
+            try {
+                const data = await apiRequest("/orders");
+                const orders = data.orders || data || [];
+
+                if (!Array.isArray(orders) || orders.length === 0) {
+                    ordersList.textContent = "You have no orders yet.";
+                    return;
+                }
+
+                ordersList.innerHTML = "";
+
+                orders.forEach(order => {
+                    const card = document.createElement("article");
+                    card.className = "order-card";
+
+                    const heading = document.createElement("h3");
+                    heading.textContent = `Order #${order.id}`;
+
+                    const status = document.createElement("p");
+                    status.textContent = `Status: ${order.status || "Processing"}`;
+
+                    const amount = document.createElement("p");
+                    amount.textContent =
+                        `Total: ₹${order.total_amount ?? order.total ?? 0}`;
+
+                    card.append(heading, status, amount);
+                    ordersList.appendChild(card);
+                });
+            } catch (error) {
+                message.textContent = error.message;
+                ordersList.textContent = "Unable to load orders.";
+            }
+        }
+
+        loadOrders();
+    </script>
+</body>
+</html>
+

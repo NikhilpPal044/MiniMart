@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniMart - My Profile</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>My Profile</h1>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="cart.html">Cart</a>
+            <a href="orders.html">Orders</a>
+        </nav>
+    </header>
+
+    <main>
+        <p id="message" role="status">Loading profile...</p>
+
+        <section class="profile-card">
+            <p><strong>Name:</strong> <span id="name">-</span></p>
+            <p><strong>Email:</strong> <span id="email">-</span></p>
+            <button id="logoutBtn">Logout</button>
+        </section>
+    </main>
+
+    <script src="../js/app.js"></script>
+    <script>
+        async function loadProfile() {
+            const message = document.getElementById("message");
+
+            try {
+                const data = await apiRequest("/profile");
+                const user = data.user || data;
+
+                document.getElementById("name").textContent =
+                    user.name || user.full_name || "-";
+
+                document.getElementById("email").textContent =
+                    user.email || "-";
+
+                message.textContent = "";
+            } catch (error) {
+                message.textContent =
+                    "Profile load nahi hua. Please login karke try karein.";
+            }
+        }
+
+        document.getElementById("logoutBtn").addEventListener("click", logoutUser);
+
+        loadProfile();
+    </script>
+</body>
+</html>
+

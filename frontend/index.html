@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MiniMart | Online Shopping</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="index.html" class="logo">MiniMart<span>.</span></a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#products">Products</a>
+            <a href="pages/login.html">Login</a>
+            <a href="pages/signup.html">Sign Up</a>
+            <a href="pages/cart.html" class="cart-link">
+                Cart <span id="cart-count">0</span>
+            </a>
+              <a href="index.html">MiniMart</a>
+            <a href="pages/cart.html">My Cart</a>
+            <a href="pages/order.html">My Orders</a>
+            <a href="pages/profile.html">My Profile</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <p class="tagline">YOUR EVERYDAY SHOPPING DESTINATION</p>
+
+                <h1>Find Your Favorites.<br>
+                    <span>Shop Smarter.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Discover amazing products at great prices.
+                    Shopping made simple with MiniMart.
+                </p>
+
+                <a href="#products" class="shop-btn">
+                    Shop Now →
+                </a>
+            </div>
+        </section>
+
+        <section class="products-section" id="products">
+    <div class="section-heading">
+        <p class="tagline">OUR COLLECTION</p>
+        <h2>Popular Products</h2>
+        <p>Explore products picked for you.</p>
+    </div>
+       <div id="productList" class="product-grid">
+    <p>Loading products...</p>
+     </div>
+
+      <p id="message" class="message"></p>
+</section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 MiniMart. All rights reserved.</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
+
